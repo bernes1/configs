@@ -32,6 +32,9 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  #Enable tailscale
+  services.tailscale.enable = true;
+
   # Set your time zone.
   time.timeZone = "Europe/Oslo";
 
@@ -80,7 +83,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.herman = {
     isNormalUser = true;
-    description = "herman";
+    description = "duck";
     extraGroups = [ "networkmanager" "wheel" "dialout" ];
     packages = with pkgs; [
       firefox
@@ -100,20 +103,28 @@
       popsicle
       qflipper
       _1password-gui
-      tailscale    
+      tailscale
+      helix    
     ];
   };
 
   # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;  
+  nixpkgs.config.allowUnfree = true; 
+  
+  #Virtualbox  
   virtualisation.virtualbox.host.enable = true;
- #virtualisation.virtualbox.host.enableExtensionPack = true;
+  #virtualisation.virtualbox.host.enableExtensionPack = true;
   users.extraGroups.vboxusers.members = [ "duck" ];
+  
+  #Docker
+  virtualisation.docker.enable = true;
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
+     
      curl
      neovim
      git
@@ -122,7 +133,8 @@
      ripgrep
      cargo
      rustc
-     helix
+     gnome3.gnome-tweaks
+     gnomeExtensions.dash-to-dock
      btop
   ];
  

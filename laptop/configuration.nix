@@ -81,7 +81,7 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.herman = {
+  users.users.duck = {
     isNormalUser = true;
     description = "duck";
     extraGroups = [ "networkmanager" "wheel" "dialout" ];

@@ -12,15 +12,15 @@
     configuration = { pkgs, ... }: {
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
-     environment.systemPackages =
+      environment.systemPackages =
         [ pkgs.helix
           pkgs.poetry
         ];
       environment.shells = 
-       [ pkgs.bashInteractive
-         pkgs.zsh
-         pkgs.fish 
-       ];
+      [pkgs.bashInteractive
+       pkgs.zsh
+       pkgs.fish 
+      ];
       security.pam.enableSudoTouchIdAuth = true;
       # Auto upgrade nix package and the daemon service.
       services.nix-daemon.enable = true;
@@ -32,7 +32,7 @@
       # Create /etc/zshrc that loads the nix-darwin environment.
       programs.zsh.enable = true;  # default shell on catalina
       # programs.fish.enable = true;
-
+      
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
 

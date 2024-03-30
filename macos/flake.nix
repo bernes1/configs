@@ -15,6 +15,7 @@
       environment.systemPackages =
         [ pkgs.helix
           pkgs.poetry
+          pkgs.iterm2
         ];
       environment.shells = 
       [pkgs.bashInteractive

@@ -5,16 +5,16 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.initrd.luks.devices."luks-6db6e715-7955-4e1a-a963-5b9ef80ee84f".device = "/dev/disk/by-uuid/6db6e715-7955-4e1a-a963-5b9ef80ee84f";
+  boot.initrd.luks.devices."luks-6db6e715-7955-4e1a-a963-5b9ef80ee84f".device =
+    "/dev/disk/by-uuid/6db6e715-7955-4e1a-a963-5b9ef80ee84f";
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -24,17 +24,17 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-  
-#  networking.networkmanager.fccUnlockScripts = [{ id = "105b:e0ab"; path = "${pkgs.modemmanager}/share/ModemManager/fcc-unlock.available.d/105b:e0ab"; }] ;
+
+  #  networking.networkmanager.fccUnlockScripts = [{ id = "105b:e0ab"; path = "${pkgs.modemmanager}/share/ModemManager/fcc-unlock.available.d/105b:e0ab"; }] ;
 
   #For IPhone usb thethering
   services.usbmuxd.enable = true;
-  
-#  networking.networkmanager.enableFccUnlock = true
-  
+
+  #  networking.networkmanager.enableFccUnlock = true
+
   #Enable tailscale
   services.tailscale.enable = true;
-   
+
   # Set your time zone.
   time.timeZone = "Europe/Oslo";
 
@@ -85,7 +85,7 @@
     tod = {
       enable = true;
       driver = pkgs.libfprint-2-tod1-vfs0090;
-      };
+    };
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -94,21 +94,21 @@
     description = "duck";
     extraGroups = [ "networkmanager" "wheel" "dialout" ];
     packages = with pkgs; [
-    #  thunderbird
-       burpsuite
-       fastfetch
-       helix
-       zoxide
-       remmina
-       tailscale
-       chromium
-       git
-       gcc
-       gdb
-       neovim
-       _1password-gui
-       ghidra
-       vscode
+      #  thunderbird
+      burpsuite
+      fastfetch
+      helix
+      zoxide
+      remmina
+      tailscale
+      chromium
+      git
+      gcc
+      gdb
+      neovim
+      _1password-gui
+      ghidra
+      vscode
       #: obsidian      
     ];
   };
@@ -123,34 +123,31 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-
-
-fonts.packages = with pkgs; [nerdfonts];
+  fonts.packages = with pkgs; [ nerdfonts ];
   fonts.fontDir.enable = true;
   console = {
-    enable = true;   
-    packages = with pkgs; [nerdfonts];
+    enable = true;
+    packages = with pkgs; [ nerdfonts ];
   };
-
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
-     alacritty
-     nerdfonts
-     tmux
-     usbmuxd
-     curl
-     btop
-     libimobiledevice
-     gnome-tweaks
-     gnomeExtensions.pop-shell
-     modem-manager-gui
-     libqmi
-     libmbim
-     pciutils
+    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #  wget
+    alacritty
+    nerdfonts
+    tmux
+    usbmuxd
+    curl
+    btop
+    libimobiledevice
+    gnome-tweaks
+    gnomeExtensions.pop-shell
+    modem-manager-gui
+    libqmi
+    libmbim
+    pciutils
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

@@ -25,7 +25,10 @@
   # Enable networking
   networking.networkmanager.enable = true;
   
-  networking.networkmanager.fccUnlockScripts = [{ id = "105b:e0ab"; path = "${pkgs.modemmanager}/share/ModemManager/fcc-unlock.available.d/105b:e0ab"; }] ;
+#  networking.networkmanager.fccUnlockScripts = [{ id = "105b:e0ab"; path = "${pkgs.modemmanager}/share/ModemManager/fcc-unlock.available.d/105b:e0ab"; }] ;
+
+  #For IPhone usb thethering
+  services.usbmuxd.enable = true;
   
 #  networking.networkmanager.enableFccUnlock = true
   
@@ -104,28 +107,45 @@
        gdb
        neovim
        _1password-gui
-      
+       ghidra
+       vscode
+      #: obsidian      
     ];
   };
 
   # Install firefox.
   programs.firefox.enable = true;
 
+  #Enable virtualization
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+
+
+fonts.packages = with pkgs; [nerdfonts];
+  fonts.fontDir.enable = true;
+  console = {
+    enable = true;   
+    packages = with pkgs; [nerdfonts];
+  };
+
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
+     alacritty
+     nerdfonts
      tmux
+     usbmuxd
      curl
      btop
-     gnome3.gnome-tweaks
+     libimobiledevice
+     gnome-tweaks
      gnomeExtensions.pop-shell
      modem-manager-gui
      libqmi
